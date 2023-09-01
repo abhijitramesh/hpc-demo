@@ -93,5 +93,5 @@ if __name__ == "__main__":
         "epochs": 5,
         "save_path": "model.pth"
     }
-    # run_train(config)
+    run_train(config)
     run_prediction(config)
