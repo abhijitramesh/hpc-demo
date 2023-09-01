@@ -5,6 +5,8 @@ from utils.loss_utils import get_loss_fn
 from utils.optimizer_utils import get_optimizer
 from utils.train_utils import train
 from utils.test_utils import test
+from utils.prediction_utils import prediction
+import torch
 
 logger = get_logger()
 
@@ -16,6 +18,7 @@ def run_train(config):
     lr = config["lr"]
     optimizer = config["optimizer"]
     epochs = config["epochs"]
+    save_path = config["save_path"]
     logger.info("Configuration set.")
     ################################################
 
@@ -56,6 +59,30 @@ def run_train(config):
         train(dataloader=train_dataloader, model=model, device=device, loss_fn=loss_fn, optimizer=optimizer)
         test(dataloader=test_dataloader, model=model, device=device, loss_fn=loss_fn)
     logger.info("Training completed.")
+    logger.info("Saving model...")
+    torch.save(model.state_dict(), save_path)
+    logger.info("Model saved.")
+
+def run_prediction(config):
+    save_path = config["save_path"]
+    
+    logger.info("Fetching device...")
+    device = get_device()
+    logger.info("Device fetched.")
+    
+    logger.info("Creating model...")
+    model = get_model(device)
+    logger.info("Model created.")
+    
+    logger.info("Loading model...")
+    model.load_state_dict(torch.load(save_path))
+    logger.info("Model loaded.")
+    
+    logger.info("Predicting...")
+    model.eval()
+    test_data = get_fashion_mnist_dataset(train=False)
+    prediction(test_data=test_data, model=model, device=device)
+    logger.info("Prediction completed.")
 
 if __name__ == "__main__":
     config = {
@@ -64,5 +91,7 @@ if __name__ == "__main__":
         "optimizer": "adam",
         "lr": 1e-3,
         "epochs": 5,
+        "save_path": "model.pth"
     }
-    run_train(config)
+    # run_train(config)
+    run_prediction(config)
