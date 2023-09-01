@@ -1,7 +1,7 @@
-# Running Pytorch QuickStart code on HPC
+# Running Pytorch Quickstart code on HPC
 
 ## Credits
-This code is adapted from [Pytorch Quick Start Guide](https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html)
+This code is adapted from [Pytorch Quickstart Guide](https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html)
 
 ## Running Locally
 
