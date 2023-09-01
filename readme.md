@@ -74,3 +74,5 @@ This code is adapted from [Pytorch Quickstart Guide](https://pytorch.org/tutoria
 ## Note
 
 The model weights are saved in a `.pth` file (ignored by Git as specified in `.gitignore`). If you want to load a pre-trained model, make sure to place the `.pth` file in the correct directory.
+
+Please find the loom walkthrough [here](https://www.loom.com/share/e4188e8bd4e44027b4117d7304c078b9?sid=09b81338-1f23-4f12-ab06-f27889fb8f80)
