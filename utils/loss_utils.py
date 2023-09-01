@@ -3,7 +3,7 @@ from .logger_utils import get_logger
 logger = get_logger()
 
 
-def get_loss_fn(loss_fn):
+def get_loss_fn(*, loss_fn):
     """Get loss function.
 
     Args:
